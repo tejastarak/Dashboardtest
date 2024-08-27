@@ -1,19 +1,24 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeWidget } from '../../redux/dashboardSlice';
+import './Widget.css';
 
-const Widget = ({ widget, categoryIndex }) => {
-  const dispatch = useDispatch();
-
-  const handleRemove = () => {
-    dispatch(removeWidget({ categoryIndex, widgetId: widget.id }));
-  };
-
+const Widget = ({ title, children, legend }) => {
   return (
-    <div>
-      <h3>{widget.name}</h3>
-      <p>{widget.text}</p>
-      <button onClick={handleRemove}>Remove</button>
+    <div className="widget">
+      <h3>{title}</h3>
+      <div className="chart-container">{children}</div>
+      {legend && (
+        <div className="legend">
+          {legend.map((item, index) => (
+            <div key={index} className="legend-item">
+              <span
+                className="legend-color"
+                style={{ backgroundColor: item.color }}
+              ></span>
+              {item.label}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

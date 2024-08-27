@@ -1,35 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const categories = useSelector(state => state.dashboard.categories);
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const filteredWidgets = categories
-    .flatMap(category => category.widgets)
-    .filter(widget => widget.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
+const SearchBar = ({ onSearch }) => {
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search Widgets"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <div>
-        {filteredWidgets.map(widget => (
-          <div key={widget.id}>
-            <h3>{widget.name}</h3>
-            <p>{widget.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <input
+      type="text"
+      placeholder="Search widgets"
+      onChange={(e) => onSearch(e.target.value)}
+    />
   );
 };
 

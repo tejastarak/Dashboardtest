@@ -1,15 +1,12 @@
 import React from 'react';
-import Dashboard from './components/Dashboard/Dashboard';
-import SearchBar from './components/SearchBar';
+import Dashboard from './components/Dashboard/Dashboard'; // Adjust the import path if necessary
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>Dynamic Dashboard</h1>
-      <SearchBar />
+    <div className="App">
       <Dashboard />
     </div>
   );
-};
+}
 
 export default App;
